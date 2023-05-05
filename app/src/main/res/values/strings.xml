@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">StatusSaver</string>
+
+    <string name="saved_all_status_toast">Saved</string>
+    <string name="app_not_install_toast">App Not Install</string>
+    <string name="status_dir_permission_desc">To detect whatsapp status , please grant permission of status folder</string>
+</resources>
