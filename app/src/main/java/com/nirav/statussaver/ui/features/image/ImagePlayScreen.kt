@@ -1,7 +1,9 @@
 package com.nirav.statussaver.ui.features.image
 
+import android.app.Activity
 import android.os.Environment
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -26,6 +28,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.nirav.statussaver.core.StorageUtils
 import com.nirav.statussaver.core.convertTimeForChat
+import com.nirav.statussaver.core.downloadMultipleData
 import com.nirav.statussaver.core.isImageFile
 import com.nirav.statussaver.core.isVideoFile
 import com.nirav.statussaver.data.model.FileMedia
@@ -37,10 +40,8 @@ fun ImagePlayScreen(
     fileMedia: FileMedia
 ) {
 
-    val context = LocalContext.current
-    val imageList = remember {
-        mutableStateListOf<FileMedia>()
-    }
+    val context = LocalContext.current as Activity
+    val imageList = remember { mutableStateListOf<FileMedia>() }
 
     LaunchedEffect(key1 = true, block = {
         val docFile = File(
@@ -101,7 +102,10 @@ fun ImagePlayScreen(
             Icon(
                 modifier = Modifier
                     .size(32.dp)
-                    .padding(2.dp),
+                    .padding(2.dp)
+                    .clickable(onClick = {
+                        context.downloadMultipleData(listOf(fileMedia))
+                    }),
                 imageVector = Icons.Default.Download,
                 contentDescription = null,
                 tint = Color.White

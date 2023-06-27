@@ -30,7 +30,14 @@ fun BottomNavigationGraph(
             )
         }
         composable(BottomNavigationItem.DOWNLOADS.route) {
-            DownloadsScreen()
+            DownloadsScreen(
+                onImageClick = {
+                    rootNavController.navigate(buildImagePlayRoute(it))
+                },
+                onVideoClick = {
+                    rootNavController.navigate(buildVideoPlayRoute(it))
+                }
+            )
         }
         composable(BottomNavigationItem.SETTINGS.route) {
             SettingScreen()

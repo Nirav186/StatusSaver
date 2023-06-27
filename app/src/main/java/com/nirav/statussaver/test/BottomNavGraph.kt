@@ -38,7 +38,14 @@ fun BottomNavGraph(
                         rootNavController.navigate(buildVideoPlayRoute(it))
                     }
                 )
-                1 -> DownloadsScreen()
+                1 -> DownloadsScreen(
+                    onImageClick = {
+                        rootNavController.navigate(buildImagePlayRoute(it))
+                    },
+                    onVideoClick = {
+                        rootNavController.navigate(buildVideoPlayRoute(it))
+                    }
+                )
                 2 -> SettingScreen()
             }
         }

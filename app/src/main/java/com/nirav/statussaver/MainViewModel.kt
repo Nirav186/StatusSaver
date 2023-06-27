@@ -44,9 +44,10 @@ class MainViewModel @Inject constructor(
     }
 
     fun playVideo(uri: Uri) {
-        player.setMediaItem(
-            videoItems.value.find { it.contentUri == uri }?.mediaItem ?: return
-        )
+        player.setMediaItem(MediaItem.fromUri(uri))
+//        player.setMediaItem(
+//            videoItems.value.find { it.contentUri == uri }?.mediaItem ?: return
+//        )
     }
 
     override fun onCleared() {
